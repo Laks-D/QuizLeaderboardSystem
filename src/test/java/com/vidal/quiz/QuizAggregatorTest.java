@@ -2,6 +2,9 @@ package com.vidal.quiz;
 
 import org.junit.jupiter.api.Test;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,6 +13,13 @@ final class QuizAggregatorTest {
 
     @Test
     void dedupesByRoundAndParticipantAndAccumulatesScores() {
+        try {
+            Files.createDirectories(Path.of("target"));
+            Files.writeString(Path.of("target", "tests-ran.marker"), "ok", StandardCharsets.UTF_8);
+        } catch (Exception ignored) {
+            // marker is best-effort; test assertions matter
+        }
+
         QuizAggregator aggregator = new QuizAggregator();
 
         List<QuizEvent> events = List.of(

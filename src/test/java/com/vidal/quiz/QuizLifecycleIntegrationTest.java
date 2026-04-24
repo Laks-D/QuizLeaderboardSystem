@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +37,11 @@ final class QuizLifecycleIntegrationTest {
             server.start();
 
             String endpointBase = server.url("/srm-quiz-task").toString();
-            Path outDir = Path.of("target", "demo-out");
+                Path outDir = Paths.get("")
+                    .toAbsolutePath()
+                    .normalize()
+                    .resolve("target")
+                    .resolve("demo-out");
 
             AppConfig config = new AppConfig(
                     "2024CS101",
