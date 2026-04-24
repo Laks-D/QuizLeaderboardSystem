@@ -58,7 +58,7 @@ The submit endpoint typically responds with JSON similar to:
 
 ```json
 {
-	"regNo": "REG_NO",
+	"regNo": "RA2311003020118",
 	"totalPollsMade": 30,
 	"submittedTotal": 1365,
 	"attemptCount": 3
