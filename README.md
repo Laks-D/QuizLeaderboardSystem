@@ -66,6 +66,7 @@ The submit endpoint typically responds with JSON similar to:
 ```
 
 `submittedTotal` should match the printed `Total Score` from the program.
+*This is an example output after testing. ( 3 attempts )
 
 ## Outputs
 
