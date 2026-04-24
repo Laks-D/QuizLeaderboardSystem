@@ -35,13 +35,13 @@ If `mvn` is not available on PATH, either add Maven to PATH or run it using the 
 Dry run computes everything but does not submit.
 
 ```powershell
-mvn -q exec:java -Dexec.args="--regNo <REG_NO> --dryRun --outDir out"
+mvn -q exec:java "-Dexec.args=--regNo <REG_NO> --dryRun --outDir out"
 ```
 
 ### 3) Run (live + submit)
 
 ```powershell
-mvn -q exec:java -Dexec.args="--regNo <REG_NO> --outDir out"
+mvn -q exec:java "-Dexec.args=--regNo <REG_NO> --outDir out"
 ```
 
 ### 4) Replay mode (no network)
@@ -49,7 +49,7 @@ mvn -q exec:java -Dexec.args="--regNo <REG_NO> --outDir out"
 Replay mode uses files saved from a previous live run.
 
 ```powershell
-mvn -q exec:java -Dexec.args="--mode replay --outDir out --dryRun"
+mvn -q exec:java "-Dexec.args=--mode replay --outDir out --dryRun"
 ```
 
 ## API response (submission)
