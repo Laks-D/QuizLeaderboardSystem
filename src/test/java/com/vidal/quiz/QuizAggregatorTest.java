@@ -28,8 +28,6 @@ final class QuizAggregatorTest {
 
         List<LeaderboardRow> board = aggregator.leaderboard();
         assertEquals(2, board.size());
-
-        // Alice total = 10 + 5, Bob total = 7
         assertTrue(board.get(0).totalScore() >= board.get(1).totalScore());
         assertEquals("Alice", board.get(0).participant());
         assertEquals(15, board.get(0).totalScore());
@@ -40,8 +38,6 @@ final class QuizAggregatorTest {
     @Test
     void ignoresDuplicateEventsAcrossLaterPolls() {
         QuizAggregator aggregator = new QuizAggregator();
-
-        // Same (roundId, participant) appears again in a later poll.
         List<QuizEvent> events = List.of(
                 new QuizEvent(0, "r1", "Alice", 10),
                 new QuizEvent(5, "r1", "Alice", 999),
@@ -56,8 +52,6 @@ final class QuizAggregatorTest {
 
         List<LeaderboardRow> board = aggregator.leaderboard();
         assertEquals(2, board.size());
-
-        // Alice should only include the first score (10), not the later duplicate (999).
         assertEquals("Alice", board.get(0).participant());
         assertEquals(10, board.get(0).totalScore());
         assertEquals("Bob", board.get(1).participant());

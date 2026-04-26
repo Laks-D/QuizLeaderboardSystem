@@ -21,7 +21,6 @@ final class QuizLifecycleIntegrationTest {
         ObjectMapper json = new ObjectMapper();
 
         try (MockWebServer server = new MockWebServer()) {
-            // Enqueue 10 poll responses.
             for (int i = 0; i < 10; i++) {
                 String body = "{\"events\":[" +
                         "{\"roundId\":\"r" + i + "\",\"participant\":\"Alice\",\"score\":1}," +
@@ -50,8 +49,6 @@ final class QuizLifecycleIntegrationTest {
                     outDir,
                     true
             );
-
-            // No sleep in tests.
             new QuizLifecycle(Duration.ZERO, 10).run(config);
 
             assertTrue(Files.exists(outDir.resolve("leaderboard.json")));
