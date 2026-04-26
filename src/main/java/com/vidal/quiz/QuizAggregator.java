@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 final class QuizAggregator {
-    private final Set<String> uniqueRegistry = new HashSet<>();
+    private final DeduplicationLayer deduplication = new DeduplicationLayer();
     private final Map<String, Integer> scoreByParticipant = new HashMap<>();
 
     private int eventsSeen;
@@ -20,8 +20,7 @@ final class QuizAggregator {
         for (QuizEvent event : events) {
             eventsSeen++;
 
-            String compositeKey = event.roundId() + ":" + event.participant();
-            if (!uniqueRegistry.add(compositeKey)) {
+            if (!deduplication.isFirstTime(event.roundId(), event.participant())) {
                 duplicatesSkipped++;
                 continue;
             }
