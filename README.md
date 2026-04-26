@@ -7,6 +7,8 @@ This repository contains a Java 17 CLI that:
 - Builds a leaderboard sorted by `totalScore` (descending)
 - Submits the final leaderboard (unless `--dryRun` is used)
 
+Deduplication key: `roundId + "_" + participant` (idempotent across polls).
+
 It also writes an audit trail and analytics-friendly exports so results are reproducible and easy to review.
 
 ## Prerequisites
